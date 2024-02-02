@@ -18,13 +18,7 @@ class PageController extends Controller
             $pages = Page::all();
             return view('admin.page.index',compact('pages'));
         } catch (Throwable $th) {
-            Log::create([
-                'model' => 'page',
-                'message' => 'Pages page could not be loaded.',
-                'th_message' => $th->getMessage(),
-                'th_file' => $th->getFile(),
-                'th_line' => $th->getLine(),
-            ]);
+            
             return redirect()->back()->with(['type' => 'error', 'message' =>'Pages page could not be loaded.']);
         }
     }
@@ -35,13 +29,7 @@ class PageController extends Controller
             $languages = Option::where('key','=','language')->orderBy('id','desc')->get();
             return view('admin.page.create',compact('languages'));
         } catch (Throwable $th) {
-            Log::create([
-                'model' => 'page',
-                'message' => 'The page create page could not be loaded.',
-                'th_message' => $th->getMessage(),
-                'th_file' => $th->getFile(),
-                'th_line' => $th->getLine(),
-            ]);
+            
             return redirect()->back()->with(['type' => 'error', 'message' =>'The page create page could not be loaded.']);
         }
     }
@@ -50,41 +38,23 @@ class PageController extends Controller
     {
         $request->validate([
             'title' => 'required|min:3|max:255',
-            'slug' => 'required|min:3|max:255',
-            'language' => 'required',
             'no_index' => 'nullable|in:on',
             'no_follow' => 'nullable|in:on',
             'media_id' => 'nullable|numeric|min:1',
         ]);
         try {
-            $slug = Slug::create([
-                'slug' => slugCheck($request->slug),
-                'owner' => 'page',
-                'seo_title' => $request->seo_title,
-                'seo_description' => $request->seo_description,
-                'no_index' => $request->no_index=='on' ? 1 : 0,
-                'no_follow' => $request->no_follow=='on' ? 1 : 0,
-            ]);
+            
 
-            $page = Page::create([
-                'slug_id' => $slug->id,
+           Page::create([
                 'media_id' => $request->media_id ?? 1,
                 'title' => $request->title,
                 'content' => $request->content,
-                'template' => $request->template,
-                'sidebar' => $request->sidebar,
                 'language' => $request->language,
             ]);
 
             return redirect()->route('admin.page.index')->with(['type' => 'success', 'message' =>'Page Created.']);
         } catch (Throwable $th) {
-            Log::create([
-                'model' => 'page',
-                'message' => 'The page could not be saved.',
-                'th_message' => $th->getMessage(),
-                'th_file' => $th->getFile(),
-                'th_line' => $th->getLine(),
-            ]);
+            dd($th);
             return redirect()->back()->with(['type' => 'error', 'message' =>'The page could not be saved.']);
         }
     }
@@ -110,40 +80,20 @@ class PageController extends Controller
     {
         $request->validate([
             'title' => 'required|min:3|max:255',
-            'slug' => 'required|min:3|max:255',
-            'language' => 'required',
-            'no_index' => 'nullable|in:on',
-            'no_follow' => 'nullable|in:on',
             'media_id' => 'nullable|numeric|min:1',
         ]);
         try {
-            $page->getSlug()->update([
-                'slug' => slugCheck($request->slug, $page->slug_id),
-                'owner' => 'page',
-                'seo_title' => $request->seo_title,
-                'seo_description' => $request->seo_description,
-                'no_index' => $request->no_index=='on' ? 1 : 0,
-                'no_follow' => $request->no_follow=='on' ? 1 : 0,
-            ]);
-
+           
             $page->update([
                 'media_id' => $request->media_id ?? 1,
                 'title' => $request->title,
                 'content' => $request->content,
-                'template' => $request->template,
-                'sidebar' => $request->sidebar,
                 'language' => $request->language,
             ]);
 
             return redirect()->route('admin.page.index')->with(['type' => 'success', 'message' =>'Page Updated.']);
         } catch (Throwable $th) {
-            Log::create([
-                'model' => 'page',
-                'message' => 'The page could not be updated.',
-                'th_message' => $th->getMessage(),
-                'th_file' => $th->getFile(),
-                'th_line' => $th->getLine(),
-            ]);
+           
             return redirect()->back()->with(['type' => 'error', 'message' =>'The page could not be updated.']);
         }
     }

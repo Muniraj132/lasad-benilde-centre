@@ -43,7 +43,7 @@
                                     <th>{{ __('main.Title') }}</th>
                                     <th>{{ __('main.eventdate') }}</th>
                                     <th>{{ __('main.Category') }}</th>
-                                    <th>{{ __('main.Hit') }}</th>
+                                    {{-- <th>{{ __('main.Hit') }}</th> --}}
                                     <th>{{ __('main.Creation Date') }}</th>
                                     <th>{{ __('main.Statu') }}</th>
                                     <th></th>
@@ -62,7 +62,7 @@
                                         {{-- <td>{{ $article->getSlug->slug }}</td> --}}
                                         <td>{{ $article->eventdate }}</td>
                                         <td>{{ $article->getCategory->title }}</td>
-                                        <td>{{ $article->hit }}</td>
+                                        {{-- <td>{{ $article->hit }}</td> --}}
                                         <td>{{ $article->created_at->diffForHumans() }}</td>
                                         <td><input class="switch" type="checkbox" name="my-checkbox"
                                                 data-id="{{ $article->id }}" @if ($article->status == 1) checked @endif

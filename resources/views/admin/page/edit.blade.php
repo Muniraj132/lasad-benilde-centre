@@ -48,22 +48,14 @@
                                         @error('title') <small
                                             class="ml-auto text-danger">{{ __('main.titleError') }}</small> @enderror
                                     </div>
+                                    
                                     <div class="form-group">
-                                        <label for="slug">{{ __('main.Permalink') }}</label>
-                                        <input type="text"
-                                            class="form-control form-control-sm @error('slug') is-invalid @enderror"
-                                            id="slug" name="slug" value="{{ old('slug') ?? $page->getSlug->slug }}">
-                                        @error('slug') <small
-                                            class="ml-auto text-danger">{{ __('main.slugError') }}</small> @enderror
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="desc"></label>
+                                        <label for="desc">{{ __('main.Content') }}</label>
                                         <textarea class="form-control form-control-sm" rows="3" id="content"
                                             name="content">{{ old('content') ?? $page->content }}</textarea>
                                     </div>
                                 </div>
                             </div>
-                            @include('admin.layouts.slug')
                         </div>
                         <div class="col-md-3">
                             <div class="card">
@@ -92,36 +84,6 @@
                                         id="choose">{{ __('main.Choose Image') }}</a>
                                     <a href="javascript:void(0);" class="btn btn-xs btn-warning float-right"
                                         id="remove">{{ __('main.Remove Image') }}</a>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <div class="card-header">
-                                    {{ __('main.Page Template') }}
-                                </div>
-                                <div class="card-body">
-                                    <select class="form-control" name="template" id="template">
-                                        <option value="default" @if (old('default') ?? $page->template == 'default') selected @endif>{{ __('main.Default') }}
-                                        </option>
-                                        <option value="contact" @if (old('contact') ?? $page->template == 'contact') selected @endif>{{ __('main.Contact') }}
-                                        </option>
-                                        <option value="blog" @if (old('blog') ?? $page->template == 'blog') selected @endif>{{ __('main.Blog') }}</option>
-                                        <option value="search" @if (old('search') ?? $page->template == 'search') selected @endif>{{ __('main.Search') }}</option>
-                                        <option value="contract" @if (old('contract') ?? $page->template == 'contract') selected @endif>{{ __('main.Contract') }}
-                                        </option>
-                                        <option value="blank" @if (old('blank') ?? $page->template == 'blank') selected @endif>{{ __('main.Blank') }}</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <div class="card-header">
-                                    {{ __('main.Sidebar') }}
-                                </div>
-                                <div class="card-body">
-                                    <select class="form-control" name="sidebar" id="sidebar">
-                                        <option value="0" @if (old('sidebar') ?? $page->sidebar == 0) selected @endif>{{ __('main.No') }}</option>
-                                        <option value="1" @if (old('sidebar') ?? $page->sidebar == 1) selected @endif>{{ __('main.Page Sidebar') }}</option>
-                                        <option value="2" @if (old('sidebar') ?? $page->sidebar == 2) selected @endif>{{ __('main.Blog Sidebar') }}</option>
-                                    </select>
                                 </div>
                             </div>
                         </div>

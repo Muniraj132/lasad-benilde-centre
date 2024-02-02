@@ -41,8 +41,8 @@
                                 <tr>
                                     <th>{{ __('main.Image') }}</th>
                                     <th>{{ __('main.Title') }}</th>
-                                    <th>{{ __('main.Permalink') }}</th>
-                                    <th>{{ __('main.Hit') }}</th>
+                                    {{-- <th>{{ __('main.Permalink') }}</th> --}}
+                                    {{-- <th>{{ __('main.Hit') }}</th> --}}
                                     <th>{{ __('main.Creation Date') }}</th>
                                     <th>{{ __('main.Statu') }}</th>
                                     <th></th>
@@ -54,8 +54,8 @@
                                         <td><img src="{{ $page->getMedia->id == 1 ? '' : $page->getMedia->getUrl('thumb') }}"
                                                 alt="" style="height: 24px"></td>
                                         <td>{{ $page->title }}</td>
-                                        <td>{{ $page->getSlug->slug }}</td>
-                                        <td>{{ $page->hit }}</td>
+                                        {{-- <td>{{ $page->getSlug->slug }}</td> --}}
+                                        {{-- <td>{{ $page->hit }}</td> --}}
                                         <td>{{ $page->created_at->diffForHumans() }}</td>
                                         <td><input class="switch" type="checkbox" name="my-checkbox"
                                                 data-id="{{ $page->id }}" @if ($page->status == 1) checked @endif data-toggle="toggle"
@@ -63,9 +63,7 @@
                                                 data-off="{{ __('main.Draft') }}" data-onstyle="success"
                                                 data-offstyle="danger"></td>
                                         <td>
-                                            <a href="{{ url('/', $page->getSlug->slug) }}"
-                                                title="{{ __('main.Show') }}" class="btn btn-success btn-xs"><i
-                                                    class="fas fa-arrow-right"></i></a>
+                                            
                                             <a href="{{ route('admin.page.edit', $page->id) }}"
                                                 title="{{ __('main.Edit') }}" class="btn btn-primary btn-xs"><i
                                                     class="fas fa-pencil-alt"></i></a>

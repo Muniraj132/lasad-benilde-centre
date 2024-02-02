@@ -112,7 +112,7 @@ class HomeController extends Controller
                 $query->where('resources.category_id', $projectid);
             })
             ->orderBy('resources.created_at', 'desc') // Add this line to order by created_at in descending order
-            ->limit(4) // Add this line to limit the result to the top four records
+            ->limit(6) // Add this line to limit the result to the top four records
             ->get();
 
         $resource->each(function ($newsletter) {
