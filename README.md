@@ -7,7 +7,7 @@
 - Open the terminal screen and paste the code below and run it.
 
   ```
-  git clone https://github.com/kuttinnasi/UAC-Website-Backend.git
+  git clone https://github.com/Muniraj132/lasad-benilde-centre.git
   ```
 ## Installation
 
