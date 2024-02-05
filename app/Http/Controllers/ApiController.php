@@ -18,7 +18,7 @@ use App\Models\Slug;
 use App\Models\Slide;
 use App\Models\Article;
 use App\Models\Newsletter;
-use App\Models\Resource;
+use App\Models\Room;
 use App\Models\Socialmedia;
 use App\Models\Media;
 use App\Models\Page;
@@ -346,19 +346,19 @@ class ApiController extends Controller
     }
     public function getresourcedata($id){
       
-        $resource = Resource::select(
-            'resources.title',
-            'resources.file_id',
-            'resources.id',
-            'resources.content',
-            'resources.media_id',
-            'resources.eventdate',
-            'resources.created_at',
+        $resource = Room::select(
+            'rooms.title',
+            'rooms.file_id',
+            'rooms.id',
+            'rooms.content',
+            'rooms.media_id',
+            'rooms.eventdate',
+            'rooms.created_at',
             'categories.title as category_name'
         )
-        ->leftJoin('categories', 'resources.category_id', '=', 'categories.id')
-        ->where('resources.status', 1)
-        ->where('resources.category_id',$id)
+        ->leftJoin('categories', 'rooms.category_id', '=', 'categories.id')
+        ->where('rooms.status', 1)
+        ->where('rooms.category_id',$id)
         ->get();
     
        $resource->each(function ($newsletter) {

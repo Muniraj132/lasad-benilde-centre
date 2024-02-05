@@ -18,7 +18,7 @@ use App\Models\Slug;
 use App\Models\Slide;
 use App\Models\Article;
 use App\Models\Newsletter;
-use App\Models\Resource;
+use App\Models\Room;
 use App\Models\Socialmedia;
 use App\Models\Media;
 use App\Models\Page;
@@ -96,22 +96,22 @@ class HomeController extends Controller
         #endregion
 
         #region project Data 
-        $resource = Resource::select(
-            'resources.title',
-            'resources.file_id',
-            'resources.id',
-            'resources.content',
-            'resources.media_id',
-            'resources.eventdate',
-            'resources.created_at',
+        $resource = Room::select(
+            'rooms.title',
+            'rooms.file_id',
+            'rooms.id',
+            'rooms.content',
+            'rooms.media_id',
+            'rooms.eventdate',
+            'rooms.created_at',
             'categories.title as category_name'
         )
-            ->leftJoin('categories', 'resources.category_id', '=', 'categories.id')
-            ->where('resources.status', 1)
+            ->leftJoin('categories', 'rooms.category_id', '=', 'categories.id')
+            ->where('rooms.status', 1)
             ->when($projectid, function ($query) use ($projectid) {
-                $query->where('resources.category_id', $projectid);
+                $query->where('rooms.category_id', $projectid);
             })
-            ->orderBy('resources.created_at', 'desc') // Add this line to order by created_at in descending order
+            ->orderBy('rooms.created_at', 'desc') // Add this line to order by created_at in descending order
             ->limit(6) // Add this line to limit the result to the top four records
             ->get();
 

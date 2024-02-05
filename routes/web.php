@@ -54,14 +54,14 @@ Route::prefix('admin')->name('admin.')->middleware('isAdmin')->group(function ()
 
    Route::resource('/newletter', 'App\Http\Controllers\Admin\NewsletterController');
 
-    Route::resource('/resource', 'App\Http\Controllers\Admin\ResourceController');
+    Route::resource('/resource', 'App\Http\Controllers\Admin\RoomController');
 
-    Route::get('/resource/switch', [App\Http\Controllers\Admin\ResourceController::class, 'show'])->name('resource.switch');
+    Route::get('/resource/switch', [App\Http\Controllers\Admin\RoomController::class, 'show'])->name('resource.switch');
    
-    Route::get('/resource/get/trash', [App\Http\Controllers\Admin\ResourceController::class, 'gettrash'])->name('resource.trash');
+    Route::get('/resource/get/trash', [App\Http\Controllers\Admin\RoomController::class, 'gettrash'])->name('resource.trash');
 
-    Route::get('/resource/delete/{id}', [App\Http\Controllers\Admin\ResourceController::class, 'delete'])->name('resource.delete');
-    Route::get('/resource/recover/{id}', [App\Http\Controllers\Admin\ResourceController::class, 'recover'])->name('resource.recover');
+    Route::get('/resource/delete/{id}', [App\Http\Controllers\Admin\RoomController::class, 'delete'])->name('resource.delete');
+    Route::get('/resource/recover/{id}', [App\Http\Controllers\Admin\RoomController::class, 'recover'])->name('resource.recover');
 
     Route::get('/ourteam/switch', [App\Http\Controllers\Admin\OurteamController::class, 'switch'])->name('ourteam.switch');
     Route::get('/ourteam/trash', [App\Http\Controllers\Admin\OurteamController::class, 'trash'])->name('ourteam.trash');

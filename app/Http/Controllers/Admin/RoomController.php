@@ -9,16 +9,16 @@ use App\Models\Slug;
 use App\Models\Article;
 use App\Models\Log;
 use App\Models\Option;
-use App\Models\Resource;
+use App\Models\Room;
 use Illuminate\Support\Facades\Auth;
 use Throwable;
 
-class ResourceController extends Controller
+class RoomController extends Controller
 {
     public function index()
     {
         try {
-            $articles = Resource::all();
+            $articles = Room::all();
             return view('admin.resources.index',compact('articles'));
         } catch (Throwable $th) {
             Log::create([
@@ -63,41 +63,31 @@ class ResourceController extends Controller
         //     'category_id' => 'nullable|numeric|min:1',
         // ]);
         try {
-            $slug = Slug::create([
-                'slug' => slugCheck($request->slug),
-                'owner' => 'newsletter',
-                'seo_title' => $request->seo_title,
-                'seo_description' => $request->seo_description,
-                'no_index' => $request->no_index=='on' ? 1 : 0,
-                'no_follow' => $request->no_follow=='on' ? 1 : 0,
-            ]);
+            
 
             $file = $request->file('file_id');
             if ($file != null) {
                 
                 $filename = $file->getClientOriginalName();
-                 Resource::create([
-                    'slug_id' => $slug->id,
-                     'user_id' => Auth::id(),
+                 Room::create([
+                    'user_id' => Auth::id(),
                     'media_id' => $request->media_id ?? 1,
                     'file_id' => $filename,
                     'category_id' => $request->category ?? 1,
                     'title' => $request->title,
                     'content' => $request->content,
-                    'language' => $request->language,
                     'eventdate' => $request->eventdate,
                 ]);
                 $destinationPath ="newletter";
                 $file->move($destinationPath, $filename);
             }else{
-                 Resource::create([
-                    'slug_id' => $slug->id,
+                 Room::create([
+                   
                      'user_id' => Auth::id(),
                     'media_id' => $request->media_id ?? 1,
                     'category_id' => $request->category ?? 1,
                     'title' => $request->title,
                     'content' => $request->content,
-                    'language' => $request->language,
                     'eventdate' => $request->eventdate,
                 ]);
             }
@@ -120,7 +110,7 @@ class ResourceController extends Controller
         try {
             $categories = Category::all();
             $languages = Option::where('key','=','language')->get();
-            $value =Resource::where('id',$newsletter)->first();
+            $value =Room::where('id',$newsletter)->first();
             return view('admin.resources.edit',compact('categories','value','languages'));
         } catch (Throwable $th) {
             Log::create([
@@ -137,25 +127,15 @@ class ResourceController extends Controller
     public function update(Request $request, $id)
     {
         
-        $article =Resource::where('id',$id)->first();
+        $article =Room::where('id',$id)->first();
         $request->validate([
             'title' => 'required|min:3|max:255',
-            'slug' => 'required|min:3|max:255',
-            'language' => 'required',
             'no_index' => 'nullable|in:on',
             'no_follow' => 'nullable|in:on',
             'media_id' => 'nullable|numeric|min:1',
             'category' => 'nullable|numeric|min:1',
         ]);
         try {
-            $article->getSlug()->update([
-                'slug' => slugCheck($request->slug, $article->slug_id),
-                'owner' => 'newletter',
-                'seo_title' => $request->seo_title,
-                'seo_description' => $request->seo_description,
-                'no_index' => $request->no_index=='on' ? 1 : 0,
-                'no_follow' => $request->no_follow=='on' ? 1 : 0,
-            ]);
             
             $file = $request->file('file_id');
             if ($file != null) {
@@ -167,7 +147,6 @@ class ResourceController extends Controller
                     'category_id' => $request->category ?? 1,
                     'title' => $request->title,
                     'content' => $request->content,
-                    'language' => $request->language,
                     'eventdate' => $request->eventdate,
                 ]);
                 $destinationPath ="newletter";
@@ -178,7 +157,6 @@ class ResourceController extends Controller
                     'category_id' => $request->category ?? 1,
                     'title' => $request->title,
                     'content' => $request->content,
-                    'language' => $request->language,
                     'eventdate' => $request->eventdate,
                 ]);
             }
@@ -198,7 +176,7 @@ class ResourceController extends Controller
     public function delete($article)
     {
         try {
-            $articledata = Resource::where('id',$article)->first();
+            $articledata = Room::where('id',$article)->first();
             $articledata->delete();
             return redirect()->route('admin.resource.index')->with(['type' => 'success', 'message' =>'Projects Moved To Recycle Bin.']);
         } catch (Throwable $th) {
@@ -217,7 +195,7 @@ class ResourceController extends Controller
     {  
        
         try {
-            $articles = Resource::onlyTrashed()->get();
+            $articles = Room::onlyTrashed()->get();
             return view('admin.resources.trash',compact('articles'));
         } catch (Throwable $th) {
             Log::create([
@@ -233,7 +211,7 @@ class ResourceController extends Controller
     public function recover($id)
     {
         try {
-            Resource::withTrashed()->find($id)->restore();
+            Room::withTrashed()->find($id)->restore();
             return redirect()->route('admin.resource.trash')->with(['type' => 'success', 'message' =>'Projects Recovered.']);
         } catch (Throwable $th) {
             Log::create([
@@ -251,7 +229,7 @@ class ResourceController extends Controller
     {
        
         try {
-            $article = Resource::withTrashed()->find($id);
+            $article = Room::withTrashed()->find($id);
             $article->getSlug()->delete();
             $article->forceDelete();
             $filename = $article->file_id;
@@ -278,7 +256,7 @@ class ResourceController extends Controller
     public function show(Request $request)
     {
         try {
-            Resource::find($request->id)->update([
+            Room::find($request->id)->update([
                 'status' => $request->status=="true" ? 1 : 0
             ]);
         } catch (Throwable $th) {

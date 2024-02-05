@@ -28,7 +28,7 @@ Route::get('/get/slidebar',[ApiController::class,'getslidebar']);
 Route::get('get/gallery_images',[ApiController::class,'getGalleryimages']);
 Route::get('get/teammembers',[ApiController::class,'getteam']);
 Route::get('get/team/{id}',[ApiController::class,'getteammembers']);
-Route::get('resource/category/{id}', [ApiController::class, 'getresourcedata']);
+Route::get('rooms/category/{id}', [ApiController::class, 'getresourcedata']);
 Route::get('youtube/vedios', [ApiController::class, 'getyoutubedata']);
 Route::get('get/contactDetails',[ApiController::class,'getcontactpage']);
 Route::get('/get/Activity/list/{id}',[ApiController::class,'getactivitylist']);

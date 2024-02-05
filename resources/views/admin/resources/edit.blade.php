@@ -61,38 +61,15 @@
                                        @enderror
                                     </div>
                                     <div class="form-group">
-                                        {{-- <label for="slug">{{ __('main.Permalink') }}</label> --}}
-                                        <input type="text" hidden
-                                            class="form-control form-control-sm @error('slug') is-invalid @enderror"
-                                            id="slug" name="slug" value="{{ old('slug') ?? $value->getSlug->slug }}">
-                                        @error('slug') <small
-                                            class="ml-auto text-danger">{{ __('main.slugError') }}</small> @enderror
-                                    </div>
-                                    <div class="form-group">
                                         <label for="desc"></label>
                                         <textarea class="form-control form-control-sm" rows="3" id="content"
                                             name="content">{{ old('content') ?? $value->content }}</textarea>
                                     </div>
                                 </div>
                             </div>
-                            @include('admin.layouts.slug')
                         </div>
                         <div class="col-md-3">
-                            <div class="card">
-                                <div class="card-header">
-                                    <label for="language">{{ __('main.Language') }}</label>
-                                </div>
-                                <div class="card-body">
-                                    <select name="language" id="language" class="form-control form-control-sm">
-                                        
-                                     
-                                        @foreach ($languages as $language)
-                                            <option value="{{ $language->language }}" @if (old('language') ?? $value->language == $language->language) selected @endif>
-                                                {{ $language->value }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
+                            
                             <div class="card">
                                 <div class="card-header">
                                     <label for="language">{{ __('main.eventdate') }}</label>

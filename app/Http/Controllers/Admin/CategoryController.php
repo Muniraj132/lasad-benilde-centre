@@ -17,16 +17,10 @@ class CategoryController extends Controller
     public function index()
     {
         try {
-            $categories = Category::where('type', '=', 'article-category')->get();
+            $categories = Category::all();
             return view("admin.category.index", compact('categories'));
         } catch (Throwable $th) {
-            Log::create([
-                'model' => 'category',
-                'message' => 'Categories page could not be loaded.',
-                'th_message' => $th->getMessage(),
-                'th_file' => $th->getFile(),
-                'th_line' => $th->getLine(),
-            ]);
+            
             return redirect()->back()->with(['type' => 'error', 'message' => 'Categories page could not be loaded.']);
         }
     }
@@ -35,8 +29,7 @@ class CategoryController extends Controller
     {
         try {
             $categories = Category::all();
-            $languages = Option::where('key', '=', 'language')->orderBy('id','desc')->get();
-            return view("admin.category.create", compact('categories', 'languages'));
+            return view("admin.category.create", compact('categories'));
         } catch (Throwable $th) {
             Log::create([
                 'model' => 'category',
@@ -53,32 +46,17 @@ class CategoryController extends Controller
     {
         $request->validate([
             'title' => 'required|min:3|max:255',
-            'slug' => 'required|min:3|max:255',
-            'language' => 'required',
-            'no_index' => 'nullable|in:on',
-            'no_follow' => 'nullable|in:on',
-            'media_id' => 'nullable|numeric|min:1',
             'upper' => 'nullable|numeric',
             'type' => 'required',
         ]);
         try {
-            $slug = Slug::create([
-                'slug' => slugCheck($request->slug),
-                'owner' => $request->type,
-                'seo_title' => $request->seo_title,
-                'seo_description' => $request->seo_description,
-                'no_index' => $request->no_index == 'on' ? 1 : 0,
-                'no_follow' => $request->no_follow == 'on' ? 1 : 0,
-            ]);
-
+           
             Category::create([
                 'title' => $request->title,
-                'slug_id' => $slug->id,
                 'media_id' => $request->media_id ?? 1,
                 'upper' => $request->upper,
                 'content' => $request->content,
                 'type' => $request->type,
-                'language' => $request->language,
             ]);
 
             return redirect()->route('admin.category.index')->with(['type' => 'success', 'message' => 'Category Saved.']);
@@ -99,8 +77,7 @@ class CategoryController extends Controller
         try {
             $category = Category::findOrFail($id);
             $categories = Category::all();
-            $languages = Option::where('key', '=', 'language')->get();
-            return view('admin.category.edit', compact('category', 'categories', 'languages'));
+            return view('admin.category.edit', compact('category', 'categories'));
         } catch (Throwable $th) {
             Log::create([
                 'model' => 'category',
@@ -119,23 +96,11 @@ class CategoryController extends Controller
         
         $request->validate([
             'title' => 'required|min:3|max:255',
-            'slug' => 'required|min:3|max:255',
-            'language' => 'required',
-            'no_index' => 'nullable|in:on',
-            'no_follow' => 'nullable|in:on',
             'media_id' => 'nullable|numeric|min:1',
             'upper' => 'nullable|numeric',
             'type' => 'required',
         ]);
         try {
-            $category->getSlug()->update([
-                'slug' => slugCheck($request->slug, $category->slug_id),
-                'owner' => $request->type,
-                'seo_title' => $request->seo_title,
-                'seo_description' => $request->seo_description,
-                'no_index' => $request->no_index == 'on' ? 1 : 0,
-                'no_follow' => $request->no_follow == 'on' ? 1 : 0,
-            ]);
 
             $category->update([
                 'title' => $request->title,
@@ -143,7 +108,6 @@ class CategoryController extends Controller
                 'upper' => $request->upper,
                 'content' => $request->content,
                 'type' => $request->type,
-                'language' => $request->language,
             ]);
 
             return redirect()->route('admin.category.index')->with(['type' => 'success', 'message' => 'Category Updated.']);
