@@ -71,21 +71,9 @@
                                         id="remove">{{ __('main.Remove Image') }}</a>
                                 </div>
                             </div>
-                            <div class="card">
-                                <div class="card-header">
-                                    <label for="upper">{{ __('main.Parent') }}</label>
-                                </div>
-                                <div class="card-body">
-                                    <div class="form-group">
-                                        <select class="form-control form-control-sm" id="upper" name="upper">
-                                            <option value="0"></option>
-                                            @foreach ($categories as $category)
-                                                <option value="{{ $category->id }}"" @if (old('upper') == $category->id) selected @endif>{{ $category->title }}</option>
-                                                  @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
+                            <input type="text"
+                            class="form-control form-control-sm @error('parent') is-invalid @enderror"
+                            id="parent" name="parent" hidden value="{{ request()->segment(3) }}">
                         </div>
                         <div class="card" id="save-card">
                             <div class="card-body">

@@ -166,7 +166,7 @@ class ApiController extends Controller
     ]);
     
     }
-    public function getpage(){
+    public function getpage($id){
      
         $pages = Page::select(
             'pages.title',
@@ -180,8 +180,8 @@ class ApiController extends Controller
         )
         ->leftJoin('slugs', 'pages.slug_id', '=', 'slugs.id')
         ->where('pages.status', 1)
+        ->where('pages.id', $id)
         ->get();
-
         $pages->each(function ($page) {
             $mediaUrl = null;
         
@@ -237,7 +237,7 @@ class ApiController extends Controller
 
     public function getGalleryimages(){
 
-        $Image =Image::select('images.id','images.title','images.alt','images.path','images.created_at','categories.title as categoryname')->leftJoin('categories' ,'categories.id','=','images.category_id')
+        $Image =Image::select('images.id','images.title','images.alt','images.path','images.created_at','categories.title as categoryname','categories.id as category_id')->leftJoin('categories' ,'categories.id','=','images.category_id')
         ->orderBy('images.id','desc')->get();
 // dd( $Image);
         $imagesData = [];
@@ -250,6 +250,7 @@ class ApiController extends Controller
                 'image' => asset($image->path),
                 'date' =>  $image->created_at->format('d-m-Y'),
                 'categoryname' => $image->categoryname,
+                'category_id' => $image->category_id,
             ]; 
             $imagesData[] = $data; 
         }

@@ -33,7 +33,7 @@ class GalleryController extends Controller
     public function create()
     {
         try {
-            $categories = Category::where('type','=','article-category')->get();
+            $categories = Category::where('parent' ,'gallery')->get();
             return view("admin.gallery.create", compact("categories"));
         } catch (Throwable $th) {
             Log::create([
@@ -98,7 +98,7 @@ class GalleryController extends Controller
         try {
             // dd('fg');    
             $media = Image::find($id);
-            $categories = Category::all();
+            $categories = Category::where('parent' ,'gallery')->get();
             return view('admin.gallery.edit',compact('media','categories'));
         } catch (Throwable $th) {
             Log::create([

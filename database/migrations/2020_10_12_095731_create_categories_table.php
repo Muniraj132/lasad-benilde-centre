@@ -13,7 +13,7 @@ class CreateCategoriesTable extends Migration
             $table->unsignedBigInteger('slug_id')->nullable();
             $table->unsignedBigInteger('media_id')->nullable();
             $table->string('title');
-            $table->integer('upper')->nullable();
+            $table->string('parent')->nullable();
             $table->longText('content')->nullable();
             $table->string('type')->nullable();
             $table->string('language')->default('tr');

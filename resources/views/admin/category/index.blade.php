@@ -31,7 +31,7 @@
             <div class="container-fluid">
                 <div class="card">
                     <div class="card-header">
-                        <a href="{{ route('admin.category.create') }}"
+                        <a href="{{ url('admin/category/'.request()->segment(3).'/create') }}"
                             class="btn btn-success btn-sm">{{ __('main.Add New') }}</a>
                     </div>
                     <div class="card-body" style="margin: 20px;">

@@ -35,7 +35,7 @@ class OurteamController extends Controller
     public function create()
     { 
         try {
-            $categories = Category::where('type','=','article-category')->get();
+            $categories = Category::where('parent' ,'features')->get();
             $languages = Option::where('key','=','language')->orderBy('id','desc')->get();
             return view('admin.ourteam.create',compact('categories','languages'));
         } catch (Throwable $th) {
@@ -101,7 +101,7 @@ class OurteamController extends Controller
     public function edit($ourteam)
     { 
         try {
-            $categories = Category::all();
+            $categories = Category::where('parent' ,'features')->get();
             $languages = Option::where('key','=','language')->get();
             $value =Ourteam::where('id',$ourteam)->first();
             return view('admin.ourteam.edit',compact('categories','value','languages'));

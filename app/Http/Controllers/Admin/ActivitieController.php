@@ -33,7 +33,7 @@ class ActivitieController extends Controller
    public function create()
     {
         try {
-            $categories = Category::where('type','=','article-category')->get();
+            $categories = Category::where('parent' ,'services')->get();
             $languages = Option::where('key','=','language')->orderBy('id','desc')->get();
             return view('admin.activitie.create',compact('categories','languages'));
         } catch (Throwable $th) {
@@ -97,7 +97,7 @@ class ActivitieController extends Controller
 
         try {
             $article = Activity::where('id',$id)->first();
-            $categories = Category::all();
+            $categories = Category::where('parent' ,'services')->get();
             $languages = Option::where('key','=','language')->get();
             return view('admin.activitie.edit',compact('categories','article','languages'));
         } catch (Throwable $th) {

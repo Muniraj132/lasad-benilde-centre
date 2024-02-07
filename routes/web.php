@@ -22,6 +22,20 @@ Route::get('/register', [App\Http\Controllers\LoginController::class, 'registerU
 Route::post('/register', [App\Http\Controllers\LoginController::class, 'register'])->name('register');
 
 Route::prefix('admin')->name('admin.')->middleware('isAdmin')->group(function () {
+
+
+
+    Route::get('/category/gallery/', [App\Http\Controllers\Admin\CategoryController::class, 'index'])->name('gallery.category');
+    Route::get('/category/gallery/create', [App\Http\Controllers\Admin\CategoryController::class, 'create'])->name('gallery.category.create');
+    Route::get('/category/room/', [App\Http\Controllers\Admin\CategoryController::class, 'index'])->name('room.category');
+    Route::get('/category/room/create', [App\Http\Controllers\Admin\CategoryController::class, 'create'])->name('room.category.create');
+    Route::get('/category/services/', [App\Http\Controllers\Admin\CategoryController::class, 'index'])->name('services.category');
+    Route::get('/category/services/create', [App\Http\Controllers\Admin\CategoryController::class, 'create'])->name('services.category.create');
+    Route::get('/category/newsletter/', [App\Http\Controllers\Admin\CategoryController::class, 'index'])->name('newsletter.category');
+    Route::get('/category/newsletter/create', [App\Http\Controllers\Admin\CategoryController::class, 'create'])->name('newsletter.category.create');
+    Route::get('/category/features/', [App\Http\Controllers\Admin\CategoryController::class, 'index'])->name('features.category');
+    Route::get('/category/features/create', [App\Http\Controllers\Admin\CategoryController::class, 'create'])->name('features.category.create');
+
    
     Route::get('/home', [App\Http\Controllers\LoginController::class, 'admin'])->name('home');
     Route::post('/media/storeMedia', [App\Http\Controllers\Admin\FileController::class, 'storeMedia'])->name('media.storeMedia');

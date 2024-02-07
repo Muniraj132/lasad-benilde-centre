@@ -23,7 +23,7 @@ Route::Post('/store/contact',[ApiController::class,'storecontact']);
 Route::get('/get/post/{id}',[ApiController::class,'getpostdata']);
 Route::get('/get/slider/{id}',[ApiController::class,'getsliderimages']);
 Route::get('/get/Newsletter',[ApiController::class,'getnewsletter']);
-Route::get('/get/Pages',[ApiController::class,'getpage']);
+Route::get('/get/Pages/{id}',[ApiController::class,'getpage']);
 Route::get('/get/slidebar',[ApiController::class,'getslidebar']);
 Route::get('get/gallery_images',[ApiController::class,'getGalleryimages']);
 Route::get('get/teammembers',[ApiController::class,'getteam']);

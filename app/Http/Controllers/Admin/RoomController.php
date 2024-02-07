@@ -35,7 +35,7 @@ class RoomController extends Controller
     public function create()
     { 
         try {
-            $categories = Category::where('type','=','article-category')->get();
+            $categories = Category::where('parent' ,'room')->get();
             $languages = Option::where('key','=','language')->orderBy('id','desc')->get();
             return view('admin.resources.create',compact('categories','languages'));
         } catch (Throwable $th) {
@@ -108,7 +108,7 @@ class RoomController extends Controller
     public function edit($newsletter)
     { 
         try {
-            $categories = Category::all();
+            $categories = Category::where('parent' ,'room')->get();
             $languages = Option::where('key','=','language')->get();
             $value =Room::where('id',$newsletter)->first();
             return view('admin.resources.edit',compact('categories','value','languages'));

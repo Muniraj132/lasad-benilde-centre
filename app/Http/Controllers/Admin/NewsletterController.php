@@ -35,7 +35,7 @@ class NewsletterController extends Controller
     public function create()
     { 
         try {
-            $categories = Category::where('type','=','article-category')->get();
+            $categories = Category::where('parent' ,'newsletter')->get();
             $languages = Option::where('key','=','language')->orderBy('id','desc')->get();
             return view('admin.newsletter.create',compact('categories','languages'));
         } catch (Throwable $th) {
@@ -117,7 +117,7 @@ class NewsletterController extends Controller
     public function edit($newsletter)
     { 
         try {
-            $categories = Category::all();
+            $categories = Category::where('parent' ,'newsletter')->get();
             $languages = Option::where('key','=','language')->get();
             $value =Newsletter::where('id',$newsletter)->first();
             return view('admin.newsletter.edit',compact('categories','value','languages'));

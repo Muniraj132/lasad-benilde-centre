@@ -16,11 +16,12 @@ class CategoryController extends Controller
 {
     public function index()
     {
+        
         try {
-            $categories = Category::all();
+            $segment = request()->segment(3); 
+            $categories = Category::where('parent' ,$segment)->get();
             return view("admin.category.index", compact('categories'));
         } catch (Throwable $th) {
-            
             return redirect()->back()->with(['type' => 'error', 'message' => 'Categories page could not be loaded.']);
         }
     }
@@ -46,28 +47,18 @@ class CategoryController extends Controller
     {
         $request->validate([
             'title' => 'required|min:3|max:255',
-            'upper' => 'nullable|numeric',
             'type' => 'required',
         ]);
         try {
-           
             Category::create([
                 'title' => $request->title,
                 'media_id' => $request->media_id ?? 1,
-                'upper' => $request->upper,
+                'parent' => $request->parent,
                 'content' => $request->content,
                 'type' => $request->type,
             ]);
-
-            return redirect()->route('admin.category.index')->with(['type' => 'success', 'message' => 'Category Saved.']);
+            return redirect()->away(url('admin/category/'.$request->parent))->with(['type' => 'success', 'message' => 'Category Saved.']);
         } catch (Throwable $th) {
-            Log::create([
-                'model' => 'category',
-                'message' => 'The category could not be saved.',
-                'th_message' => $th->getMessage(),
-                'th_file' => $th->getFile(),
-                'th_line' => $th->getLine(),
-            ]);
             return redirect()->back()->with(['type' => 'error', 'message' => 'The category could not be saved.']);
         }
     }
@@ -76,16 +67,8 @@ class CategoryController extends Controller
     {
         try {
             $category = Category::findOrFail($id);
-            $categories = Category::all();
-            return view('admin.category.edit', compact('category', 'categories'));
+            return view('admin.category.edit', compact('category'));
         } catch (Throwable $th) {
-            Log::create([
-                'model' => 'category',
-                'message' => 'The category edit page could not be loaded.',
-                'th_message' => $th->getMessage(),
-                'th_file' => $th->getFile(),
-                'th_line' => $th->getLine(),
-            ]);
             return redirect()->back()->with(['type' => 'error', 'message' => 'The category edit page could not be loaded.']);
         }
     }
@@ -97,7 +80,6 @@ class CategoryController extends Controller
         $request->validate([
             'title' => 'required|min:3|max:255',
             'media_id' => 'nullable|numeric|min:1',
-            'upper' => 'nullable|numeric',
             'type' => 'required',
         ]);
         try {
@@ -105,20 +87,13 @@ class CategoryController extends Controller
             $category->update([
                 'title' => $request->title,
                 'media_id' => $request->media_id ?? 1,
-                'upper' => $request->upper,
+                'parent' => $request->parent,
                 'content' => $request->content,
                 'type' => $request->type,
             ]);
 
-            return redirect()->route('admin.category.index')->with(['type' => 'success', 'message' => 'Category Updated.']);
+            return redirect()->away(url('admin/category/'.$request->parent))->with(['type' => 'success', 'message' => 'Category Saved.']);
         } catch (Throwable $th) {
-            Log::create([
-                'model' => 'category',
-                'message' => 'The category could not be updated.',
-                'th_message' => $th->getMessage(),
-                'th_file' => $th->getFile(),
-                'th_line' => $th->getLine(),
-            ]);
             return redirect()->back()->with(['type' => 'error', 'message' => 'The category could not be updated.']);
         }
     }

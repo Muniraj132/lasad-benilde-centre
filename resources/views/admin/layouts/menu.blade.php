@@ -61,49 +61,6 @@
             </ul>
           </li>
 
-
-          {{-- <li class="nav-item has-treeview @if(Request::segment(2)=="tutor") menu-open @endif">
-            <a href="{{ route('admin.tutor.course.index') }}" class="nav-link @if(Request::segment(3)=="course") active @endif">
-                <i class="nav-icon fas fa-graduation-cap"></i>
-              <p>
-                {{ __('main.Tutor') }}
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview" style="@if(Request::segment(2)=="tutor") display:block; @endif">
-                <li class="nav-item">
-                  <a href="{{ route('admin.tutor.course.index') }}" class="nav-link @if(Request::segment(2)=="tutor" && Request::segment(3)=="course") active @endif">
-                    <ion-icon name="return-down-forward-outline"></ion-icon>
-                    <p>{{ __('main.Courses') }}</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="{{ route('admin.tutor.category.index') }}" class="nav-link @if(Request::segment(2)=="tutor" && Request::segment(3)=="category") active @endif">
-                    <ion-icon name="return-down-forward-outline"></ion-icon>
-                    <p>{{ __('main.Categories') }}</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="{{ route('admin.tutor.announcement.index') }}" class="nav-link @if(Request::segment(2)=="tutor" && Request::segment(3)=="announcement") active @endif">
-                    <ion-icon name="return-down-forward-outline"></ion-icon>
-                    <p>{{ __('main.Announcements') }}</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="{{ route('admin.tutor.student.index') }}" class="nav-link @if(Request::segment(2)=="tutor" && Request::segment(3)=="student") active @endif">
-                    <ion-icon name="return-down-forward-outline"></ion-icon>
-                    <p>{{ __('main.Students') }}</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="{{ route('admin.tutor.zoom.index') }}" class="nav-link @if(Request::segment(2)=="tutor" && Request::segment(3)=="zoom") active @endif">
-                    <ion-icon name="return-down-forward-outline"></ion-icon>
-                    <p>{{ __('main.ZOOM') }}</p>
-                  </a>
-                </li>
-            </ul>
-          </li> --}}
-
           <li class="nav-item has-treeview @if(Request::segment(2)=="media") menu-open @endif">
             <a href="{{ route('admin.media.index') }}" class="nav-link @if(Request::segment(2)=="media") active @endif">
               <i class="nav-icon fas fa-photo-video"></i>
@@ -127,12 +84,7 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item">
-            <a href="{{ route('admin.category.index') }}" class="nav-link @if(Request::segment(2)=="category") active @endif">
-                <i class="fas fa-arrow-right nav-icon"></i>
-              <p>{{ __('main.Category') }}</p>
-            </a>
-          </li>
+          
           <li class="nav-item has-treeview @if(Request::segment(2)=="page") menu-open @endif">
             <a href="{{ route('admin.page.index') }}" class="nav-link @if(Request::segment(2)=="page") active @endif">
                 <i class="nav-icon fas fa-copy"></i>
@@ -156,31 +108,8 @@
                 </li>
             </ul>
           </li>
-          {{-- <li class="nav-item has-treeview @if(Request::segment(2)=="article") menu-open @endif">
-            <a href="{{ route('admin.media.index') }}" class="nav-link @if(Request::segment(2)=="article") active @endif">
-                <i class=" nav-icon fas fa-thumbtack"></i>
-                <p>
-                    {{ __('main.Posts') }}
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview" style="@if(Request::segment(2)=="article") display:block; @endif">
-                <li class="nav-item">
-                  <a href="{{ route('admin.article.index') }}" class="nav-link @if(Request::segment(2)=="article" && Request::segment(3)!="create") active @endif">
-                    <ion-icon name="return-down-forward-outline"></ion-icon>
-                    <p>{{ __('main.All Posts') }}</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="{{ route('admin.article.create') }}" class="nav-link @if(Request::segment(2)=="article" && Request::segment(3)=="create") active @endif">
-                    <ion-icon name="return-down-forward-outline"></ion-icon>
-                    <p>{{ __('main.Add New') }}</p>
-                  </a>
-                </li>
-            </ul>
-          </li> --}}
-          <li class="nav-item has-treeview @if(Request::segment(2)=="resource") menu-open @endif">
-            <a href="{{ route('admin.resource.index') }}" class="nav-link @if(Request::segment(2)=="resource") active @endif">
+          <li class="nav-item has-treeview @if(Request::segment(2)=="resource" || Request::segment(3)=="room") menu-open @endif">
+            <a href="{{ route('admin.resource.index') }}" class="nav-link @if(Request::segment(2)=="resource" ||  Request::segment(3)=="room") active @endif">
               <i class="nav-icon fas fa-building"></i>
                 <p>
                     {{ __('main.resources') }}
@@ -188,6 +117,12 @@
               </p>
             </a>
             <ul class="nav nav-treeview" style="@if(Request::segment(2)=="resource") display:block; @endif">
+              <li class="nav-item">
+                <a href="{{ route('admin.room.category') }}" class="nav-link @if(Request::segment(3)=="room" && Request::segment(2)=="category") active @endif">
+                  <ion-icon name="return-down-forward-outline"></ion-icon>
+                  <p>{{ __('main.Categories') }}</p>
+                </a>
+              </li>
                 <li class="nav-item">
                   <a href="{{ route('admin.resource.index') }}" class="nav-link @if(Request::segment(2)=="resource" && Request::segment(3)!="create") active @endif">
                     <ion-icon name="return-down-forward-outline"></ion-icon>
@@ -202,8 +137,8 @@
                 </li>
             </ul>
           </li>
-          <li class="nav-item has-treeview @if(Request::segment(2)=="activitie") menu-open @endif">
-            <a href="{{ route('admin.activitie.index') }}" class="nav-link @if(Request::segment(2)=="activitie") active @endif">
+          <li class="nav-item has-treeview @if(Request::segment(2)=="activitie"  || Request::segment(3)=='services') menu-open @endif ">
+            <a href="{{ route('admin.activitie.index') }}" class="nav-link @if(Request::segment(2)=="activitie" || Request::segment(3)=='services') active @endif">
               <i class="fas fa-snowboarding nav-icon"></i>
                 <p>
                     {{ __('main.Activities') }}
@@ -211,6 +146,12 @@
               </p>
             </a>
             <ul class="nav nav-treeview" style="@if(Request::segment(2)=="resource") display:block; @endif">
+              <li class="nav-item">
+                <a href="{{ route('admin.services.category') }}" class="nav-link @if(Request::segment(3)=="services" && Request::segment(2)=="category") active @endif">
+                  <ion-icon name="return-down-forward-outline"></ion-icon>
+                  <p>{{ __('main.Categories') }}</p>
+                </a>
+              </li>
                 <li class="nav-item">
                   <a href="{{ route('admin.activitie.index') }}" class="nav-link @if(Request::segment(2)=="activitie" && Request::segment(3)!="create") active @endif">
                     <ion-icon name="return-down-forward-outline"></ion-icon>
@@ -225,14 +166,38 @@
                 </li>
             </ul>
           </li>
-          <li class="nav-item">
-            <a href="{{ route('admin.newletter.index') }}" class="nav-link @if(Request::segment(2)=="newletter") active @endif">
-                <i class="fas fa-calendar nav-icon"></i>
-             <p>{{ __('main.newletter') }}</p>
+          <li class="nav-item has-treeview @if(Request::segment(2)=="newletter" || Request::segment(3)=='newsletter') menu-open @endif ">
+            <a href="{{ route('admin.newletter.index') }}" class="nav-link @if(Request::segment(2)=="newletter" || Request::segment(3)=='newsletter') active @endif">
+                <i class="fas fa-snowboarding nav-icon"></i>
+                <p>
+                    {{ __('main.newletter') }}
+                    <i class="right fas fa-angle-left"></i>
+                </p>
             </a>
-          </li>
-          <li class="nav-item has-treeview @if(Request::segment(2)=="gallery") menu-open @endif">
-            <a href="{{ route('admin.gallery.index') }}" class="nav-link @if(Request::segment(2)=="gallery") active @endif">
+            <ul class="nav nav-treeview" style="@if(Request::segment(2)=="newletter") display:block; @endif">
+                <li class
+                ="nav-item">
+                    <a href="{{ route('admin.newsletter.category') }}" class="nav-link @if(Request::segment(3)=="newletter" || Request::segment(2)=="category") active @endif">
+                        <ion-icon name="return-down-forward-outline"></ion-icon>
+                        <p>{{ __('main.Categories') }}</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.newletter.index') }}" class="nav-link @if(Request::segment(2)=="newletter" && Request::segment(3)!="create") active @endif">
+                        <ion-icon name="return-down-forward-outline"></ion-icon>
+                        <p>{{ __('main.Allnewsletter') }}</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.newletter.create') }}" class="nav-link @if(Request::segment(2)=="newletter" && Request::segment(3)=="create") active @endif">
+                        <ion-icon name="return-down-forward-outline"></ion-icon>
+                        <p>{{ __('main.Addnewsletter') }}</p>
+                    </a>
+                </li>
+            </ul>
+        </li>
+          <li class="nav-item has-treeview @if(Request::segment(2)=="gallery" || Request::segment(3)== "gallery") menu-open @endif">
+            <a href="{{ route('admin.gallery.index') }}" class="nav-link @if(Request::segment(2)=="gallery" || Request::segment(3)== "gallery") active @endif">
               <i class="nav-icon fas fa-image"></i>
               <p>
                 {{ __('main.Gallery') }}
@@ -242,6 +207,12 @@
             </a>
             <ul class="nav nav-treeview" style="@if(Request::segment(2)=="gallery") display:block; @endif">
               <li class="nav-item">
+                <a href="{{ route('admin.gallery.category') }}" class="nav-link @if(Request::segment(3)=="gallery" || Request::segment(2)=="category") active @endif">
+                  <ion-icon name="return-down-forward-outline"></ion-icon>
+                  <p>{{ __('main.Categories') }}</p>
+                </a>
+              </li>
+              <li class="nav-item"> 
                 <a href="{{ route('admin.gallery.index') }}" class="nav-link @if(Request::segment(2)=="gallery" && Request::segment(3)!="create") active @endif">
                     <ion-icon name="return-down-forward-outline"></ion-icon>
                     <p>{{ __('main.All Images') }}</p>
@@ -261,24 +232,44 @@
               <p>{{ __('main.Slides') }}</p>
             </a>
           </li>
-          <li class="nav-item">
-            <a href="{{ route('admin.ourteam.index') }}" class="nav-link @if(Request::segment(2)=="ourteam") active @endif">
-                <i class="fas fa-users nav-icon"></i>
-              <p>{{ __('main.ourteam') }}</p>
+
+          <li class="nav-item has-treeview @if(Request::segment(2)=="ourteam"  || Request::segment(3)=='features') menu-open @endif ">
+            <a href="{{ route('admin.ourteam.index') }}" class="nav-link @if(Request::segment(2)=="ourteam" || Request::segment(3)=='features') active @endif">
+              <i class="fas fa-users nav-icon"></i>
+                <p>
+                    {{ __('main.ourteam') }}
+                    <i class="right fas fa-angle-left"></i>
+                </p>
             </a>
-          </li>
+            <ul class="nav nav-treeview" style="@if(Request::segment(2)=="ourteam") display:block; @endif">
+                <li class="nav-item">
+                    <a href="{{ route('admin.features.category') }}" class="nav-link @if(Request::segment(3)=="features" || Request::segment(2)=="category") active @endif">
+                        <ion-icon name="return-down-forward-outline"></ion-icon>
+                        <p>{{ __('main.Categories') }}</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.ourteam.index') }}" class="nav-link @if(Request::segment(2)=="ourteam" && Request::segment(3)!="create") active @endif">
+                        <ion-icon name="return-down-forward-outline"></ion-icon>
+                        <p>{{ __('main.Allteam') }}</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.ourteam.create') }}" class="nav-link @if(Request::segment(2)=="ourteam" && Request::segment(3)=="create") active @endif">
+                        <ion-icon name="return-down-forward-outline"></ion-icon>
+                        <p>{{ __('main.Addteam') }}</p>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+          
           <li class="nav-item">
             <a href="{{ route('admin.testimonial.index') }}" class="nav-link @if(Request::segment(2)=="testimonial") active @endif">
                  <i class="fas fa-quote-left nav-icon"></i>
               <p>{{ __('main.testimonials') }}</p>
             </a>
           </li>
-          {{-- <li class="nav-item">
-            <a href="{{ route('admin.comment.index') }}" class="nav-link @if(Request::segment(2)=="comment") active @endif">
-                <i class="fas fa-comments nav-icon"></i>
-              <p>{{ __('main.Comments') }}</p>
-            </a>
-          </li> --}}
           <li class="nav-item">
             <a href="{{ route('admin.contact.index') }}" class="nav-link @if(Request::segment(2)=="contact") active @endif">
                 <i class="fas fa-phone nav-icon"></i>
@@ -293,30 +284,7 @@
             </a>
           </li>
 
-
-          {{-- <li class="nav-item has-treeview @if(Request::segment(2)=="user" ) menu-open @endif">
-            <a href="{{ route('admin.user.index') }}" class="nav-link @if(Request::segment(2)=="user") active @endif">
-                <i class=" nav-icon fas fa-user"></i>
-                <p>
-                    {{ __('main.Users') }}
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview" style="@if(Request::segment(2)=="user") display:block; @endif">
-                <li class="nav-item">
-                  <a href="{{ route('admin.user.index') }}" class="nav-link @if(Request::segment(2)=="user" && Request::segment(3)!="create") active @endif">
-                    <ion-icon name="return-down-forward-outline"></ion-icon>
-                    <p>{{ __('main.All Users') }}</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="{{ route('admin.user.create') }}" class="nav-link @if(Request::segment(2)=="user" && Request::segment(3)=="create") active @endif">
-                    <ion-icon name="return-down-forward-outline"></ion-icon>
-                    <p>{{ __('main.Add New') }}</p>
-                  </a>
-                </li>
-            </ul>
-          </li> --}}
+          
         <li class="nav-item has-treeview @if(Request::segment(2)=="option" ) menu-open @endif">
             <a href="{{ route('admin.option.index') }}" class="nav-link @if(Request::segment(2)=="option") active @endif">
                 <i class=" nav-icon fas fa-cog"></i>
@@ -326,48 +294,12 @@
               </p>
             </a>
             <ul class="nav nav-treeview" style="@if(Request::segment(2)=="option") display:block; @endif">
-                {{-- <li class="nav-item">
-                  <a href="{{ route('admin.option.index') }}" class="nav-link @if(Request::segment(2)=="option" && Request::segment(3)=="index") active @endif">
-                    <ion-icon name="return-down-forward-outline"></ion-icon>
-                    <p>{{ __('main.General Options') }}</p>
-                  </a>
-                </li> --}}
-                {{-- <li class="nav-item">
-                  <a href="{{ route('admin.option.menu.index')}}" class="nav-link @if(Request::segment(2)=="option" && Request::segment(3)=="menu") active @endif">
-                    <ion-icon name="return-down-forward-outline"></ion-icon>
-                    <p>{{ __('main.Menus') }}</p>
-                  </a>
-                </li> --}}
-                {{-- <li class="nav-item">
-                  <a href="{{ route('admin.option.widget')}}" class="nav-link @if(Request::segment(2)=="option" && Request::segment(3)=="widget") active @endif">
-                    <ion-icon name="return-down-forward-outline"></ion-icon>
-                    <p>{{ __('main.Widgets') }}</p>
-                  </a>
-                </li> --}}
-                <li class="nav-item">
+               <li class="nav-item">
                   <a href="{{ route('admin.option.contact') }}" class="nav-link @if(Request::segment(2)=="option" && Request::segment(3)=="contact") active @endif">
                     <ion-icon name="return-down-forward-outline"></ion-icon>
                     <p>{{ __('main.Contact Information') }}</p>
                   </a>
                 </li>
-                {{-- <li class="nav-item">
-                  <a href="{{ route('admin.option.social') }}" class="nav-link @if(Request::segment(2)=="option" && Request::segment(3)=="social") active @endif">
-                    <ion-icon name="return-down-forward-outline"></ion-icon>
-                    <p>{{ __('main.Social Media') }}</p>
-                  </a>
-                </li> --}}
-                {{-- <li class="nav-item">
-                  <a href="{{ route('admin.option.redirect.index') }}" class="nav-link @if(Request::segment(2)=="option" && Request::segment(3)=="redirect") active @endif">
-                    <ion-icon name="return-down-forward-outline"></ion-icon>
-                    <p>{{ __('main.Redirects') }}</p>
-                  </a>
-                </li> --}}
-                {{-- <li class="nav-item">
-                  <a href="{{ route('admin.option.link.index') }}" class="nav-link @if(Request::segment(2)=="option" && Request::segment(3)=="link") active @endif">
-                    <ion-icon name="return-down-forward-outline"></ion-icon>
-                    <p>{{ __('main.Auto Linkers') }}</p>
-                  </a>
-                </li> --}}
             </ul>
           </li>
          
