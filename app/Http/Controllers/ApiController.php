@@ -170,15 +170,11 @@ class ApiController extends Controller
      
         $pages = Page::select(
             'pages.title',
-            'pages.template',
             'pages.id',
             'pages.content',
             'pages.media_id',
-            'pages.slug_id',
             'pages.created_at',
-            'slugs.slug as slug_name'
         )
-        ->leftJoin('slugs', 'pages.slug_id', '=', 'slugs.id')
         ->where('pages.status', 1)
         ->where('pages.id', $id)
         ->get();
