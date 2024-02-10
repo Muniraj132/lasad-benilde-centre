@@ -20,6 +20,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::Post('/store/contact',[ApiController::class,'storecontact']);
+ Route::post('/store/contactform', [ApiController::class, 'storecontactform' ]); 
 Route::get('/get/post/{id}',[ApiController::class,'getpostdata']);
 Route::get('/get/slider/{id}',[ApiController::class,'getsliderimages']);
 Route::get('/get/Newsletter',[ApiController::class,'getnewsletter']);

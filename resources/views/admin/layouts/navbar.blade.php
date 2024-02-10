@@ -16,7 +16,7 @@
         <a id="dropdownSubMenu2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-item dropdown-toggle">{{ __('main.Add New') }}</a>
         <ul aria-labelledby="dropdownSubMenu2" class="dropdown-menu border-0 shadow">
             <li><a href="{{route('admin.page.create')}}" class="dropdown-item">{{ __('main.Page') }}</a></li>
-            <li><a href="{{route('admin.category.create')}}" class="dropdown-item">{{ __('main.Category') }}</a></li>
+            <li><a href="{{route('admin.ourteam.create')}}" class="dropdown-item">{{ __('main.ourteam') }}</a></li>
             <li><a href="{{route('admin.media.create')}}" class="dropdown-item">{{ __('main.Media') }}</a></li>
             <li><a href="{{route('admin.user.create')}}" class="dropdown-item">{{ __('main.User') }}</a></li>
         </ul>
@@ -28,7 +28,7 @@
       <!-- Notifications Dropdown Menu -->
       <li class="nav-item dropdown">
         <a class="nav-link mt-2"  data-toggle="dropdown" href="#">
-          <i class="far fa-bell" style="color: #47a3a5;"></i>
+          <i class="far fa-bell" style="color: #bf0a30;"></i>
           <span class="badge badge-warning navbar-badge">0</span>
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">

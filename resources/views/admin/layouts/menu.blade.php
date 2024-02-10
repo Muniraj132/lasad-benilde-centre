@@ -168,7 +168,7 @@
           </li>
           <li class="nav-item has-treeview @if(Request::segment(2)=="newletter" || Request::segment(3)=='newsletter') menu-open @endif ">
             <a href="{{ route('admin.newletter.index') }}" class="nav-link @if(Request::segment(2)=="newletter" || Request::segment(3)=='newsletter') active @endif">
-                <i class="fas fa-snowboarding nav-icon"></i>
+              <i class="fas fa-envelope nav-icon"></i>
                 <p>
                     {{ __('main.newletter') }}
                     <i class="right fas fa-angle-left"></i>

@@ -45,7 +45,7 @@ class ApiController extends Controller
              'toemail'   => $request['email'],
              'tomobile'=> $request['mobile'],
              'tosubject'=> $request['message'],
-             ];
+         ];
          {  
              try {
                Mail::to('sakthiganapathi@dbcyelagiri.edu.in ')->send(new ContactFormMail($bodyContent));
@@ -58,6 +58,20 @@ class ApiController extends Controller
              }
          } 
      
+    }
+    public function storecontactform(Request $request){
+        try {
+            $data = [
+                'name' =>  $request['name'],
+                'email' => $request['email'],
+                'mobile' => $request['mobile'],
+                'message' => $request['message'],
+          ];
+          Contact::create($data);
+          return response()->json(['status' => 'success', 'message'=> 'Request sent successfully']);
+        } catch (\Throwable $th) {
+            return response()->json(['status' => 'failed', 'message'=> 'Failed to submit']);
+        }
     }
     public function getpostdata($id){  
         $articles = Article::select(
