@@ -18,9 +18,7 @@ use App\Http\Controllers\HomeController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-
-Route::Post('/store/contact',[ApiController::class,'storecontact']);
- Route::post('/store/contactform', [ApiController::class, 'storecontactform' ]); 
+Route::post('/store/contactform', [ApiController::class, 'storecontactform' ]); 
 Route::get('/get/post/{id}',[ApiController::class,'getpostdata']);
 Route::get('/get/slider/{id}',[ApiController::class,'getsliderimages']);
 Route::get('/get/Newsletter',[ApiController::class,'getnewsletter']);
