@@ -166,32 +166,32 @@
                 </li>
             </ul>
           </li>
-          <li class="nav-item has-treeview @if(Request::segment(2)=="newletter" || Request::segment(3)=='newsletter') menu-open @endif ">
-            <a href="{{ route('admin.newletter.index') }}" class="nav-link @if(Request::segment(2)=="newletter" || Request::segment(3)=='newsletter') active @endif">
-              <i class="fas fa-envelope nav-icon"></i>
+          <li class="nav-item has-treeview @if(Request::segment(2)=="update" || Request::segment(3)=='update') menu-open @endif ">
+            <a href="{{ route('admin.update.index') }}" class="nav-link @if(Request::segment(2)=="update" || Request::segment(3)=='update') active @endif">
+              <i class="fas fa-sync-alt nav-icon"></i>
                 <p>
-                    {{ __('main.newletter') }}
+                    {{ __('main.update') }}
                     <i class="right fas fa-angle-left"></i>
                 </p>
             </a>
-            <ul class="nav nav-treeview" style="@if(Request::segment(2)=="newletter") display:block; @endif">
+            <ul class="nav nav-treeview" style="@if(Request::segment(2)=="update") display:block; @endif">
                 <li class
                 ="nav-item">
-                    <a href="{{ route('admin.newsletter.category') }}" class="nav-link @if(Request::segment(3)=="newletter" || Request::segment(2)=="category") active @endif">
+                    <a href="{{ route('admin.update.category') }}" class="nav-link @if(Request::segment(3)=="update" || Request::segment(2)=="category") active @endif">
                         <ion-icon name="return-down-forward-outline"></ion-icon>
                         <p>{{ __('main.Categories') }}</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('admin.newletter.index') }}" class="nav-link @if(Request::segment(2)=="newletter" && Request::segment(3)!="create") active @endif">
+                    <a href="{{ route('admin.update.index') }}" class="nav-link @if(Request::segment(2)=="update" && Request::segment(3)!="create") active @endif">
                         <ion-icon name="return-down-forward-outline"></ion-icon>
-                        <p>{{ __('main.Allnewsletter') }}</p>
+                        <p>{{ __('main.Allupdate') }}</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('admin.newletter.create') }}" class="nav-link @if(Request::segment(2)=="newletter" && Request::segment(3)=="create") active @endif">
+                    <a href="{{ route('admin.update.create') }}" class="nav-link @if(Request::segment(2)=="update" && Request::segment(3)=="create") active @endif">
                         <ion-icon name="return-down-forward-outline"></ion-icon>
-                        <p>{{ __('main.Addnewsletter') }}</p>
+                        <p>{{ __('main.Addupdate') }}</p>
                     </a>
                 </li>
             </ul>
@@ -277,12 +277,12 @@
             </a>
           </li>
 
-          <li class="nav-item">
+          {{-- <li class="nav-item">
             <a href="{{ route('admin.social.index') }}" class="nav-link @if(Request::segment(2)=="social") active @endif">
               <i class="fab fa-youtube nav-icon"></i>
               <p>{{ __('main.socialmedia') }}</p>
             </a>
-          </li>
+          </li> --}}
 
           
         <li class="nav-item has-treeview @if(Request::segment(2)=="option" ) menu-open @endif">

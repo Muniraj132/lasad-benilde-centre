@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Newsletter;
+use App\Models\Update;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Slug;
@@ -103,7 +103,7 @@ class CategoryController extends Controller
         
         try {
             $data = Article::where('category_id',$id)->first();
-            $letterdata =Newsletter::where('category_id',$id)->first();
+            $letterdata =Update::where('category_id',$id)->first();
             
             if($data || $letterdata) {
                 return redirect()->route('admin.category.index')->with(['type' => 'error', 'message' => 'Cannot delete the category. It has posts associated with it..']);

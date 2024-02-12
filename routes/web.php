@@ -31,8 +31,8 @@ Route::prefix('admin')->name('admin.')->middleware('isAdmin')->group(function ()
     Route::get('/category/room/create', [App\Http\Controllers\Admin\CategoryController::class, 'create'])->name('room.category.create');
     Route::get('/category/services/', [App\Http\Controllers\Admin\CategoryController::class, 'index'])->name('services.category');
     Route::get('/category/services/create', [App\Http\Controllers\Admin\CategoryController::class, 'create'])->name('services.category.create');
-    Route::get('/category/newsletter/', [App\Http\Controllers\Admin\CategoryController::class, 'index'])->name('newsletter.category');
-    Route::get('/category/newsletter/create', [App\Http\Controllers\Admin\CategoryController::class, 'create'])->name('newsletter.category.create');
+    Route::get('/category/update/', [App\Http\Controllers\Admin\CategoryController::class, 'index'])->name('update.category');
+    Route::get('/category/update/create', [App\Http\Controllers\Admin\CategoryController::class, 'create'])->name('update.category.create');
     Route::get('/category/features/', [App\Http\Controllers\Admin\CategoryController::class, 'index'])->name('features.category');
     Route::get('/category/features/create', [App\Http\Controllers\Admin\CategoryController::class, 'create'])->name('features.category.create');
 
@@ -52,10 +52,10 @@ Route::prefix('admin')->name('admin.')->middleware('isAdmin')->group(function ()
     Route::resource('/article', 'App\Http\Controllers\Admin\ArticleController');
 
 
-    Route::get('/newsletter/switch', [App\Http\Controllers\Admin\NewsletterController::class, 'switch'])->name('newsletter.switch');
-    Route::get('/newsletter/trash', [App\Http\Controllers\Admin\NewsletterController::class, 'trash'])->name('newsletter.trash');
-    Route::get('/newsletter/delete/{id}', [App\Http\Controllers\Admin\NewsletterController::class, 'delete'])->name('newsletter.delete');
-    Route::get('/newsletter/recover/{id}', [App\Http\Controllers\Admin\NewsletterController::class, 'recover'])->name('newsletter.recover');
+    Route::get('/update/switch', [App\Http\Controllers\Admin\UpdateController::class, 'switch'])->name('update.switch');
+    Route::get('/update/trash', [App\Http\Controllers\Admin\UpdateController::class, 'trash'])->name('update.trash');
+    Route::get('/update/delete/{id}', [App\Http\Controllers\Admin\UpdateController::class, 'delete'])->name('update.delete');
+    Route::get('/update/recover/{id}', [App\Http\Controllers\Admin\UpdateController::class, 'recover'])->name('update.recover');
 
     Route::get('/social/Addmedia', [App\Http\Controllers\Admin\SocialmediaController::class, 'index'])->name('social.index');
     Route::get('/social/Editmedia', [App\Http\Controllers\Admin\SocialmediaController::class, 'edit'])->name('social.edit');
@@ -66,7 +66,7 @@ Route::prefix('admin')->name('admin.')->middleware('isAdmin')->group(function ()
     Route::post('/socialupdate', [App\Http\Controllers\Admin\SocialmediaController::class, 'socialupdate'])->name('socialupdate');
 
 
-   Route::resource('/newletter', 'App\Http\Controllers\Admin\NewsletterController');
+   Route::resource('/update', 'App\Http\Controllers\Admin\UpdateController');
 
     Route::resource('/resource', 'App\Http\Controllers\Admin\RoomController');
 

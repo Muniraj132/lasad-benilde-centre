@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Contact;
-use App\Models\Newsletter;
+use App\Models\Update;
 use App\Models\Article;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -38,8 +38,8 @@ class LoginController extends Controller
     public function admin(){
         $usercount =User::count();
         $contactrequest =Contact::count();
-        $newsletter =Newsletter::count();
-       $post= Article::count();
+        $newsletter =Update::count();
+       $post= '0';
        $users = User::all();
         return view('admin.home',compact('usercount','contactrequest','newsletter','post','users'));
     }

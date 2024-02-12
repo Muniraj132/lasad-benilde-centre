@@ -17,7 +17,7 @@ use App\Models\Category;
 use App\Models\Slug;
 use App\Models\Slide;
 use App\Models\Article;
-use App\Models\Newsletter;
+use App\Models\Update;
 use App\Models\Room;
 use App\Models\Socialmedia;
 use App\Models\Media;
@@ -142,33 +142,33 @@ class ApiController extends Controller
         }
     }
     public function getnewsletter(){
-        $newsletters = Newsletter::select(
-            'newsletters.title',
-            'newsletters.file_id',
-            'newsletters.id',
-            'newsletters.content',
-            'newsletters.media_id',
-            'newsletters.created_at',
-            'newsletters.eventdate',
+        $updates = Update::select(
+            'updates.title',
+            'updates.file_id',
+            'updates.id',
+            'updates.content',
+            'updates.media_id',
+            'updates.created_at',
+            'updates.eventdate',
             'categories.title as category_name'
         )
-        ->leftJoin('categories', 'newsletters.category_id', '=', 'categories.id')
-        ->where('newsletters.status', 1)
+        ->leftJoin('categories', 'updates.category_id', '=', 'categories.id')
+        ->where('updates.status', 1)
         ->get();
     
-       $newsletters->each(function ($newsletter) {
+       $updates->each(function ($update) {
         $mediaUrl = null;
-        $newsletter->created_date = $newsletter->created_at->format('d-m-Y');
-        $newsletter->eventdate = date("d-m-Y", strtotime($newsletter->eventdate));
-        $media = Media::find($newsletter->media_id);
+        $update->created_date = $update->created_at->format('d-m-Y');
+        $update->eventdate = date("d-m-Y", strtotime($update->eventdate));
+        $media = Media::find($update->media_id);
     
         if ($media) {
             $mediaUrl = $media->getUrl();
         }
-        $newsletter->file_url = asset('newletter/' . $newsletter->file_id);
+        $update->file_url = asset('updates/' . $update->file_id);
         
-        if($newsletter->media_id != 1){
-            $newsletter->media_url = $mediaUrl;
+        if($update->media_id != 1){
+            $update->media_url = $mediaUrl;
         }
        
     });
@@ -176,7 +176,7 @@ class ApiController extends Controller
     return response()->json([
         'success' => true,
         'message' => 'success',
-        'data' => $newsletters,
+        'data' => $updates,
     ]);
     
     }
@@ -372,25 +372,25 @@ class ApiController extends Controller
         ->where('rooms.category_id',$id)
         ->get();
     
-       $resource->each(function ($newsletter) {
+       $resource->each(function ($update) {
         $mediaUrl = null;
-        $newsletter->created_date = $newsletter->created_at->format('d-m-Y');
-        // $newsletter->edate = $newsletter->eventdate->format('d-m-Y');
+        $update->created_date = $update->created_at->format('d-m-Y');
+        // $update->edate = $update->eventdate->format('d-m-Y');
     
-        $newsletter->eventdate = date("d-m-Y", strtotime($newsletter->eventdate));
+        $update->eventdate = date("d-m-Y", strtotime($update->eventdate));
         
-        $media = Media::find($newsletter->media_id);
+        $media = Media::find($update->media_id);
     
         if ($media) {
             $mediaUrl = $media->getUrl();
         }
-        if ($newsletter->file_id) {
-            $newsletter->file_url = asset('newletter/' . $newsletter->file_id);
+        if ($update->file_id) {
+            $update->file_url = asset('newletter/' . $update->file_id);
         }
         
         
-        if($newsletter->media_id != 1){
-            $newsletter->media_url = $mediaUrl;
+        if($update->media_id != 1){
+            $update->media_url = $mediaUrl;
         }
        
     });

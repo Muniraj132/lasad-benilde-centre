@@ -31,8 +31,8 @@
 
                             </div>
                             <div class="text-right">
-                                <h5 class="card-title">News & Events</h5>
-                                <p class="card-text">Total Newsletter:</p>
+                                <h5 class="card-title">Features</h5>
+                                <p class="card-text">Total Features:</p>
                                 <strong>{{ $newsletter }}</strong>
                             </div>
                         </div>
@@ -50,8 +50,8 @@
                                 
                             </div>
                             <div class="text-right">
-                                <h5 class="card-title">Post</h5>
-                                <p class="card-text">Total Posts Data:</p>
+                                <h5 class="card-title">Services</h5>
+                                <p class="card-text">Total Services:</p>
                                 <strong>{{ $post }}</strong>
                             </div>
                         </div>

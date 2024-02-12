@@ -62,7 +62,7 @@ class HomeController extends Controller
         #endregion
 
         #region Newsletter Data    
-        $newsletters = Newsletter::select(
+        $updates = Newsletter::select(
             'newsletters.title',
             'newsletters.file_id',
             'newsletters.id',
@@ -78,19 +78,19 @@ class HomeController extends Controller
             ->limit(4)
             ->get();
 
-        $newsletters->each(function ($newsletter) {
+        $updates->each(function ($update) {
             $mediaUrl = null;
-            $newsletter->created_date = optional($newsletter->created_at)->format('d-m-Y');
-            $newsletter->eventdate = optional(date_create($newsletter->eventdate))->format('d-m-Y');
-            $media = Media::find($newsletter->media_id);
+            $update->created_date = optional($update->created_at)->format('d-m-Y');
+            $update->eventdate = optional(date_create($update->eventdate))->format('d-m-Y');
+            $media = Media::find($update->media_id);
 
             if ($media) {
                 $mediaUrl = $media->getUrl();
             }
-            $newsletter->file_url = $newsletter->file_id ? asset('newsletter/' . $newsletter->file_id) : null;
+            $update->file_url = $update->file_id ? asset('newsletter/' . $update->file_id) : null;
 
-            if ($newsletter->media_id != 1) {
-                $newsletter->media_url = $mediaUrl;
+            if ($update->media_id != 1) {
+                $update->media_url = $mediaUrl;
             }
         });
         #endregion
@@ -115,18 +115,18 @@ class HomeController extends Controller
             ->limit(6) // Add this line to limit the result to the top four records
             ->get();
 
-        $resource->each(function ($newsletter) {
+        $resource->each(function ($update) {
             $mediaUrl = null;
-            $newsletter->created_date = optional($newsletter->created_at)->format('d-m-Y');
-            $newsletter->eventdate = optional(date_create($newsletter->eventdate))->format('d-m-Y');
-            $media = Media::find($newsletter->media_id);
+            $update->created_date = optional($update->created_at)->format('d-m-Y');
+            $update->eventdate = optional(date_create($update->eventdate))->format('d-m-Y');
+            $media = Media::find($update->media_id);
             if ($media) {
                 $mediaUrl = $media->getUrl();
             }
-            $newsletter->file_url = $newsletter->file_id ? asset('newsletter/' . $newsletter->file_id) : null;
+            $update->file_url = $update->file_id ? asset('newsletter/' . $update->file_id) : null;
 
-            if ($newsletter->media_id != 1) {
-                $newsletter->media_url = $mediaUrl;
+            if ($update->media_id != 1) {
+                $update->media_url = $mediaUrl;
             }
         });
 
@@ -245,7 +245,7 @@ class HomeController extends Controller
 
         $result = [
             'SlidesData' => $SlidesData,
-            'newslettersdata' => $newsletters,
+            'newslettersdata' => $updates,
             'projectdata' => $resource,
             'testmonialdata' => $articles,
             'yotubedata' => $data,
