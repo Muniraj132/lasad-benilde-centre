@@ -1,7 +1,7 @@
 @extends('admin.layouts.master')
 
 @section('title')
-    {{ __('main.ourteam') }}
+    {{ __('main.ourfeature') }}
 @endsection
 
 @section('content')
@@ -11,13 +11,13 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h4 class="m-0 text-dark">{{ __('main.ourteam') }}</h4>
+                        <h4 class="m-0 text-dark">{{ __('main.ourfeature') }}</h4>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">{{ __('main.Home') }}</a>
                             </li>
-                            <li class="breadcrumb-item active">{{ __('main.ourteam') }}</li>
+                            <li class="breadcrumb-item active">{{ __('main.ourfeature') }}</li>
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
@@ -30,9 +30,9 @@
             <div class="container-fluid">
                 <div class="card">
                     <div class="card-header">
-                        <a href="{{ route('admin.ourteam.create') }}"
+                        <a href="{{ route('admin.ourfeature.create') }}"
                             class="btn btn-success btn-sm">{{ __('main.Add New') }}</a>
-                        <a href="{{ route('admin.ourteam.trash') }}" class="btn btn-warning btn-sm float-right"><i
+                        <a href="{{ route('admin.ourfeature.trash') }}" class="btn btn-warning btn-sm float-right"><i
                                 class="fas fa-trash-alt"></i>{{ __('main.Recycle') }}</a>
                     </div>
                     <div class="card-body">
@@ -76,10 +76,10 @@
                                             {{-- <a href="{{ url('/', $article->getSlug->slug) }}"
                                                 title="{{ __('main.Show') }}" class="btn btn-success btn-xs"><i
                                                     class="fas fa-arrow-right"></i></a> --}}
-                                            <a href="{{ route('admin.ourteam.edit', $article->id) }}"
+                                            <a href="{{ route('admin.ourfeature.edit', $article->id) }}"
                                                 title="{{ __('main.Edit') }}" class="btn btn-primary btn-xs"><i
                                                     class="fas fa-pencil-alt"></i></a>
-                                            <a href="{{ route('admin.ourteam.delete', $article->id) }}"
+                                            <a href="{{ route('admin.ourfeature.delete', $article->id) }}"
                                                 onclick="validate({{ $article->id }})" title="{{ __('main.Delete') }}"
                                                 class="btn btn-danger btn-xs"><i class="far fa-times-circle"></i></a>
                                         </td>
@@ -99,7 +99,7 @@
         $('.switch').change(function() {
             id = $(this).attr('data-id');
             status = $(this).prop('checked');
-            $.get("{{ route('admin.ourteam.switch') }}", {
+            $.get("{{ route('admin.ourfeature.switch') }}", {
                 id: id,
                 status: status
             })

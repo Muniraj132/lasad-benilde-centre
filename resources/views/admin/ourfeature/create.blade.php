@@ -1,7 +1,7 @@
 @extends('admin.layouts.master')
 
 @section('title')
-    {{ __('main.Addteam') }}
+    {{ __('main.Addourfeature') }}
 @endsection
 
 @section('content')
@@ -11,15 +11,15 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h4 class="m-0 text-dark">{{ __('main.Addteam') }}</h4>
+                        <h4 class="m-0 text-dark">{{ __('main.Addourfeature') }}</h4>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">{{ __('main.Home') }}</a>
                             </li>
                             <li class="breadcrumb-item"><a
-                                    href="{{ route('admin.ourteam.index') }}">{{ __('main.ourteam') }}</a></li>
-                            <li class="breadcrumb-item active">{{ __('main.Addteam') }}</li>
+                                    href="{{ route('admin.ourfeature.index') }}">{{ __('main.ourfeature') }}</a></li>
+                            <li class="breadcrumb-item active">{{ __('main.Addourfeature') }}</li>
                         </ol>
                         </ol>
                     </div><!-- /.col -->
@@ -31,7 +31,7 @@
         <!-- Main content -->
         <div class="content">
             <div class="container-fluid"> 
-                <form action="{{ route('admin.ourteam.store') }}" method="post" id="form" enctype="multipart/form-data">
+                <form action="{{ route('admin.ourfeature.store') }}" method="post" id="form" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
                         <div class="col-md-9">
@@ -68,7 +68,6 @@
                                     </div>
                                 </div>
                             </div>
-                            @include('admin.layouts.slug')
                         </div>
                         <div class="col-md-3">
                             <div class="card">
@@ -130,7 +129,7 @@
                             <div class="card-body">
                                 <a href="javascript:void(0);" class="btn btn-success btn-sm float-right"
                                     id="submitMembers">{{ __('main.Save') }}</a>
-                                    <a href="{{ route('admin.ourteam.index') }}" class="btn btn-danger btn-sm float-right mr-2">Cancel</a>
+                                    <a href="{{ route('admin.ourfeature.index') }}" class="btn btn-danger btn-sm float-right mr-2">Cancel</a>
                             </div>
                         </div>
                     </div>

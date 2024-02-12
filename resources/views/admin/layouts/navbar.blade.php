@@ -16,7 +16,7 @@
         <a id="dropdownSubMenu2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-item dropdown-toggle">{{ __('main.Add New') }}</a>
         <ul aria-labelledby="dropdownSubMenu2" class="dropdown-menu border-0 shadow">
             <li><a href="{{route('admin.page.create')}}" class="dropdown-item">{{ __('main.Page') }}</a></li>
-            <li><a href="{{route('admin.ourteam.create')}}" class="dropdown-item">{{ __('main.ourteam') }}</a></li>
+            <li><a href="{{route('admin.ourfeature.create')}}" class="dropdown-item">{{ __('main.ourfeature') }}</a></li>
             <li><a href="{{route('admin.media.create')}}" class="dropdown-item">{{ __('main.Media') }}</a></li>
             <li><a href="{{route('admin.user.create')}}" class="dropdown-item">{{ __('main.User') }}</a></li>
         </ul>

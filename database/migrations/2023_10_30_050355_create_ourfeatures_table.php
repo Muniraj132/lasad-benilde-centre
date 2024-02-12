@@ -13,9 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('ourteams', function (Blueprint $table) {
+        Schema::create('ourfeatures', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('slug_id')->nullable();
             $table->unsignedBigInteger('category_id');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('media_id')->nullable();

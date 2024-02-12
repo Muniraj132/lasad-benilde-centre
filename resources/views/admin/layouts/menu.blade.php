@@ -233,15 +233,15 @@
             </a>
           </li>
 
-          <li class="nav-item has-treeview @if(Request::segment(2)=="ourteam"  || Request::segment(3)=='features') menu-open @endif ">
-            <a href="{{ route('admin.ourteam.index') }}" class="nav-link @if(Request::segment(2)=="ourteam" || Request::segment(3)=='features') active @endif">
+          <li class="nav-item has-treeview @if(Request::segment(2)=="ourfeature"  || Request::segment(3)=='features') menu-open @endif ">
+            <a href="{{ route('admin.ourfeature.index') }}" class="nav-link @if(Request::segment(2)=="ourfeature" || Request::segment(3)=='features') active @endif">
               <i class="fas fa-users nav-icon"></i>
                 <p>
-                    {{ __('main.ourteam') }}
+                    {{ __('main.ourfeature') }}
                     <i class="right fas fa-angle-left"></i>
                 </p>
             </a>
-            <ul class="nav nav-treeview" style="@if(Request::segment(2)=="ourteam") display:block; @endif">
+            <ul class="nav nav-treeview" style="@if(Request::segment(2)=="ourfeature") display:block; @endif">
                 <li class="nav-item">
                     <a href="{{ route('admin.features.category') }}" class="nav-link @if(Request::segment(3)=="features" || Request::segment(2)=="category") active @endif">
                         <ion-icon name="return-down-forward-outline"></ion-icon>
@@ -249,15 +249,15 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('admin.ourteam.index') }}" class="nav-link @if(Request::segment(2)=="ourteam" && Request::segment(3)!="create") active @endif">
+                    <a href="{{ route('admin.ourfeature.index') }}" class="nav-link @if(Request::segment(2)=="ourfeature" && Request::segment(3)!="create") active @endif">
                         <ion-icon name="return-down-forward-outline"></ion-icon>
-                        <p>{{ __('main.Allteam') }}</p>
+                        <p>{{ __('main.Allourfeature') }}</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('admin.ourteam.create') }}" class="nav-link @if(Request::segment(2)=="ourteam" && Request::segment(3)=="create") active @endif">
+                    <a href="{{ route('admin.ourfeature.create') }}" class="nav-link @if(Request::segment(2)=="ourfeature" && Request::segment(3)=="create") active @endif">
                         <ion-icon name="return-down-forward-outline"></ion-icon>
-                        <p>{{ __('main.Addteam') }}</p>
+                        <p>{{ __('main.Addourfeature') }}</p>
                     </a>
                 </li>
             </ul>

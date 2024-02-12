@@ -77,11 +77,11 @@ Route::prefix('admin')->name('admin.')->middleware('isAdmin')->group(function ()
     Route::get('/resource/delete/{id}', [App\Http\Controllers\Admin\RoomController::class, 'delete'])->name('resource.delete');
     Route::get('/resource/recover/{id}', [App\Http\Controllers\Admin\RoomController::class, 'recover'])->name('resource.recover');
 
-    Route::get('/ourteam/switch', [App\Http\Controllers\Admin\OurteamController::class, 'switch'])->name('ourteam.switch');
-    Route::get('/ourteam/trash', [App\Http\Controllers\Admin\OurteamController::class, 'trash'])->name('ourteam.trash');
-    Route::get('/ourteam/delete/{id}', [App\Http\Controllers\Admin\OurteamController::class, 'delete'])->name('ourteam.delete');
-    Route::get('/ourteam/recover/{id}', [App\Http\Controllers\Admin\OurteamController::class, 'recover'])->name('ourteam.recover');
-    Route::resource('/ourteam', 'App\Http\Controllers\Admin\OurteamController');
+    Route::get('/ourfeature/switch', [App\Http\Controllers\Admin\OurfeatureController::class, 'switch'])->name('ourfeature.switch');
+    Route::get('/ourfeature/trash', [App\Http\Controllers\Admin\OurfeatureController::class, 'trash'])->name('ourfeature.trash');
+    Route::get('/ourfeature/delete/{id}', [App\Http\Controllers\Admin\OurfeatureController::class, 'delete'])->name('ourfeature.delete');
+    Route::get('/ourfeature/recover/{id}', [App\Http\Controllers\Admin\OurfeatureController::class, 'recover'])->name('ourfeature.recover');
+    Route::resource('/ourfeature', 'App\Http\Controllers\Admin\OurfeatureController');
 
 
 

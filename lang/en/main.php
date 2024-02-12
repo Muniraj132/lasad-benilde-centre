@@ -108,12 +108,11 @@ return [
     'editActivities' => 'Edit Service',
     'ActivitiesRecycle' => 'Service Recycle',
 
-    'ourteam' => 'Our Features',
-    // 'ourteams' => 'Our Teams',
-    'Allteam' => 'All Features',
-    'Addteam' => 'Add Feature',
-    'Editteam' => 'Edit Feature',
-    'team Recycle' => 'Feature Recycle',
+    'ourfeature' => 'Our Features',
+    'Allourfeature' => 'All Features',
+    'Addourfeature' => 'Add Feature',
+    'Editourfeature' => 'Edit Feature',
+    'ourfeature Recycle' => 'Feature Recycle',
     'email' => 'Email',
     'phone' =>'Phone',
 

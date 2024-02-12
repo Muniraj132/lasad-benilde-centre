@@ -18,7 +18,7 @@
                             <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">{{ __('main.Home') }}</a>
                             </li>
                             <li class="breadcrumb-item"><a
-                                    href="{{ route('admin.ourteam.index') }}">{{ __('main.ourteam') }}</a></li>
+                                    href="{{ route('admin.ourfeature.index') }}">{{ __('main.ourfeature') }}</a></li>
                             <li class="breadcrumb-item active">{{ __('main.Recycle') }}</li>
                         </ol>
                     </div><!-- /.col -->
@@ -55,11 +55,11 @@
                                         <td>{{ $article->getCategory->title }}</td>
                                         <td>{{ $article->deleted_at->diffForHumans() }}</td>
                                         <td>
-                                            <a href="{{ route('admin.ourteam.recover', $article->id) }}"
+                                            <a href="{{ route('admin.ourfeature.recover', $article->id) }}"
                                                 title="{{ __('main.Recover') }}" class="btn btn-warning btn-xs"><i
                                                     class="fas fa-recycle"></i></a>
                                             <form id="delete_{{ $article->id }}"
-                                                action="{{ route('admin.ourteam.destroy', $article->id) }}" method="post"
+                                                action="{{ route('admin.ourfeature.destroy', $article->id) }}" method="post"
                                                 class="d-inline">
                                                 @method('DELETE')
                                                 @csrf
