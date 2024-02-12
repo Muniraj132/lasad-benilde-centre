@@ -8,6 +8,7 @@ use App\Models\MainMenu;
 use App\Models\Option;
 use App\Models\Ourteam;
 use App\Models\Testimonial;
+use App\Models\Update;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -62,19 +63,19 @@ class HomeController extends Controller
         #endregion
 
         #region Newsletter Data    
-        $updates = Newsletter::select(
-            'newsletters.title',
-            'newsletters.file_id',
-            'newsletters.id',
-            'newsletters.content',
-            'newsletters.media_id',
-            'newsletters.created_at',
-            'newsletters.eventdate',
+        $updates = Update::select(
+            'updates.title',
+            'updates.file_id',
+            'updates.id',
+            'updates.content',
+            'updates.media_id',
+            'updates.created_at',
+            'updates.eventdate',
             'categories.title as category_name'
         )
-            ->leftJoin('categories', 'newsletters.category_id', '=', 'categories.id')
-            ->where('newsletters.status', 1)
-            ->orderBy('newsletters.created_at', 'desc') // Add this line to order by created_at in descending order
+            ->leftJoin('categories', 'updates.category_id', '=', 'categories.id')
+            ->where('updates.status', 1)
+            ->orderBy('updates.created_at', 'desc') // Add this line to order by created_at in descending order
             ->limit(4)
             ->get();
 
@@ -87,7 +88,7 @@ class HomeController extends Controller
             if ($media) {
                 $mediaUrl = $media->getUrl();
             }
-            $update->file_url = $update->file_id ? asset('newsletter/' . $update->file_id) : null;
+            $update->file_url = $update->file_id ? asset('updates/' . $update->file_id) : null;
 
             if ($update->media_id != 1) {
                 $update->media_url = $mediaUrl;
