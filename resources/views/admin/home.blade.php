@@ -33,7 +33,7 @@
                             <div class="text-right">
                                 <h5 class="card-title">Features</h5>
                                 <p class="card-text">Total Features:</p>
-                                <strong>{{ $newsletter }}</strong>
+                                <strong>{{ $updates }}</strong>
                             </div>
                         </div>
                     </div>
@@ -52,7 +52,7 @@
                             <div class="text-right">
                                 <h5 class="card-title">Services</h5>
                                 <p class="card-text">Total Services:</p>
-                                <strong>{{ $post }}</strong>
+                                <strong>{{ $services }}</strong>
                             </div>
                         </div>
                     </div>

@@ -374,7 +374,7 @@
                                                 <li>User Message: {{ $bodyContent['tosubject'] }}</li>
                                              </ul>
                                         <p> 
-                                            <a href="#" target="_blank">Click to view the National Coordination Council India website</a>
+                                            <a href="#" target="_blank">Click to view the Benilde Resource Centre website</a>
                                         </p>
                                         
                                       <p style="font-size: 12px;">Please review this submission and respond as necessary.</p>

@@ -33,7 +33,6 @@ class ContactController extends Controller
     }
     public function sendmail($id){
         $send = Contact::where('id',$id)->first();
-        
         $email = $send['email'];
          $bodyContent = [
              'toName' => $send['name'],
@@ -44,6 +43,7 @@ class ContactController extends Controller
                 return redirect()->back()->with(['type' => 'success', 'message' =>'Email sent Successfully.']);
                 }
                  catch (\Exception $e) {
+                    dd($e);
                     return redirect()->back()->with(['type' => 'error', 'message' =>'Email could not be sent.']);
              }
          } 

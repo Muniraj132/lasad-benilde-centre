@@ -51,26 +51,11 @@ class ActivitieController extends Controller
     {
         $request->validate([
             'title' => 'required|min:3|max:255',
-            'slug' => 'required|min:3|max:255',
-            'language' => 'required',
-            'no_index' => 'nullable|in:on',
-            'no_follow' => 'nullable|in:on',
             'media_id' => 'nullable|numeric|min:1',
             'category_id' => 'nullable|numeric|min:1',
         ]);
         try {
-           
-            $slug = Slug::create([
-                'slug' => slugCheck($request->slug),
-                'owner' => 'article',
-                'seo_title' => $request->seo_title,
-                'seo_description' => $request->seo_description,
-                'no_index' => $request->no_index=='on' ? 1 : 0,
-                'no_follow' => $request->no_follow=='on' ? 1 : 0,
-            ]);
-
              Activity::create([
-                'slug_id' => $slug->id,
                 'user_id' => Auth::id(),
                 'media_id' => $request->media_id ?? 1,
                 'category_id' => $request->category_id ?? 1,
@@ -101,13 +86,7 @@ class ActivitieController extends Controller
             $languages = Option::where('key','=','language')->get();
             return view('admin.activitie.edit',compact('categories','article','languages'));
         } catch (Throwable $th) {
-            Log::create([
-                'model' => 'activitie',
-                'message' => 'The activitie edit page could not be loaded.',
-                'th_message' => $th->getMessage(),
-                'th_file' => $th->getFile(),
-                'th_line' => $th->getLine(),
-            ]);
+           
             return redirect()->back()->with(['type' => 'error', 'message' =>'The activitie edit page could not be loaded.']);
         }
     }
@@ -116,24 +95,11 @@ class ActivitieController extends Controller
     {
         $request->validate([
             'title' => 'required|min:3|max:255',
-            'slug' => 'required|min:3|max:255',
-            'language' => 'required',
-            'no_index' => 'nullable|in:on',
-            'no_follow' => 'nullable|in:on',
             'media_id' => 'nullable|numeric|min:1',
             'category' => 'nullable|numeric|min:1',
         ]);
         try {
             $article = Activity::where('id',$id)->first();
-            $article->getSlug()->update([
-                'slug' => slugCheck($request->slug, $article->slug_id),
-                'owner' => 'activitie',
-                'seo_title' => $request->seo_title,
-                'seo_description' => $request->seo_description,
-                'no_index' => $request->no_index=='on' ? 1 : 0,
-                'no_follow' => $request->no_follow=='on' ? 1 : 0,
-            ]);
-
             $article->update([
                 'media_id' => $request->media_id ?? 1,
                 'category_id' => $request->category ?? 1,

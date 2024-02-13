@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Activity;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Contact;
@@ -36,12 +37,12 @@ class LoginController extends Controller
     }
 
     public function admin(){
-        $usercount =User::count();
-        $contactrequest =Contact::count();
-        $newsletter =Update::count();
-       $post= '0';
-       $users = User::all();
-        return view('admin.home',compact('usercount','contactrequest','newsletter','post','users'));
+            $usercount =User::count();
+            $contactrequest =Contact::count();
+            $updates =Update::count();
+            $services= Activity::count();
+            $users = User::all();
+        return view('admin.home',compact('usercount','contactrequest','updates','services','users'));
     }
 
     public function RegisterUser(){

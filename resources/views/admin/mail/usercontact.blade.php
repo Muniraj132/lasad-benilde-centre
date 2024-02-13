@@ -352,8 +352,7 @@
                         <td class="wrapper">
                             <table border="0" cellpadding="0" cellspacing="0">
                                 <tr >
-                                    {{-- <img src="https://cristoerp.com/wp-content/uploads/2023/08/logo3.png" style="width: 110px;"> --}}
-                                    
+                                    <img src="{{ asset('admin/img/leftlogo.png') }}" alt="" style="width: 100px;"> 
                                 </tr>
                                 <tr>
                                     <td><br></td>
@@ -365,7 +364,7 @@
                                         <p>Thank you for contacting us! We have received your message and will get back to you as soon as possible.</p>
 
                                         <p> 
-                                            <a href="#" target="_blank">Click to view the National Coordination Council India website</a>
+                                            <a href="#" target="_blank">Click to view the Benilde Resource Centre website</a>
                                         </p>
                                         <p style="font-size: 12px;">If you have any further questions or need immediate assistance, please don't hesitate to contact us.</p>
 

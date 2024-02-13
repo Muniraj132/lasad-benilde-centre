@@ -23,7 +23,7 @@ class TestimonialController extends Controller
     public function create()
     {
         try {
-            $categories = Category::all();
+            $categories = Category::where('parent','testimonial')->get();
             $languages = Option::where('key','=','language')->orderBy('id','desc')->get();
             return view('admin.testimonial.create',compact('categories','languages'));
         } catch (Throwable $th) {
@@ -60,11 +60,10 @@ class TestimonialController extends Controller
     {
         try {
             $article = Testimonial::where('id',$id)->first();
-            $categories = Category::all();
+            $categories = Category::where('parent','testimonial')->get();
             $languages = Option::where('key','=','language')->get();
             return view('admin.testimonial.edit',compact('categories','article','languages'));
         } catch (Throwable $th) {
-           
             return redirect()->back()->with(['type' => 'error', 'message' =>'The testimonial edit page could not be loaded.']);
         }
     }

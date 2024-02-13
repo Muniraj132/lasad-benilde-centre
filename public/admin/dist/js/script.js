@@ -159,13 +159,7 @@ $(document).ready(function () {
     });
 
     $("#submitnewsletter").click(function () {
-        const fieldIds = [
-            "title",
-            "category",
-            "content",
-            "language",
-            "eventdate",
-        ];
+        const fieldIds = ["title", "category"];
         let isEmpty = false;
         fieldIds.forEach(function (fieldId) {
             if ($("#" + fieldId).val() == "") {

@@ -20,7 +20,7 @@ class SlideController extends Controller
     public function create()
     {
         $languages = Option::where('key','=','language')->orderBy('id','desc')->get();
-        $categories = Category::all();
+        $categories = Category::where('parent','Homeslider')->get();
         return view('admin.slides.create',compact('languages','categories'));
     }
     public function store(Request $request)
@@ -48,7 +48,7 @@ class SlideController extends Controller
 
     public function edit($id)
     { 
-        $categories = Category::all();
+        $categories = Category::where('parent','Homeslider')->get();
         $slide = Slide::find($id);
         $languages = Option::where('key','=','language')->get();
         return view('admin.slides.edit',compact('slide','languages','categories'));

@@ -65,7 +65,6 @@
                                     </div>
                                 </div>
                             </div>
-                            @include('admin.layouts.slug')
                         </div>
                         <div class="col-md-3">
                             <div class="card">
